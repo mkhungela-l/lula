@@ -1001,25 +1001,53 @@
                     <div class="button-text">Sound On</div>
                   </button>
                 </div>
-                <div class="mobile-showreel_size w-dyn-list">
-                  <div role="list" class="full-height w-dyn-items">
-                    <div role="listitem" class="full-height w-dyn-item">
-                      <video
-                        loop=""
-                        muted=""
-                        playsinline="true"
-                        autoplay="true"
-                        id="video"
-                        crossorigin="anonymous"
-                        preload="true"
-                        poster="https://cdn.prod.website-files.com/64354a08ff4dd15c2539372b/66f53025d736ec8f772d3e4c_poster.webp"
-                        class="showreel"
-                      >
-                        <source src="./new-play.mp4" type="video/mp4" />
-                      </video>
-                    </div>
-                  </div>
-                </div>
+            <!-- Updated video element with better error handling -->
+<div class="mobile-showreel_size w-dyn-list">
+  <div role="list" class="full-height w-dyn-items">
+    <div role="listitem" class="full-height w-dyn-item">
+      <video
+        loop
+        muted
+        playsinline
+        autoplay
+        id="video"
+        preload="auto"
+        poster="https://cdn.prod.website-files.com/64354a08ff4dd15c2539372b/66f53025d736ec8f772d3e4c_poster.webp"
+        class="showreel"
+        controls
+      >
+        <!-- Try multiple source formats and locations -->
+        <source src="./images/new-play.mp4" type="video/mp4" />
+        <source src="./images/new-play.webm" type="video/webm" />
+        
+        <!-- Fallback sources if local files don't work -->
+        <source src="https://cdn.prod.website-files.com/64354a08ff4dd15c2539372b/new-play.mp4" type="video/mp4" />
+        <source src="https://cdn.prod.website-files.com/64354a08ff4dd15c2539372b/new-play.webm" type="video/webm" />
+        
+        <!-- Fallback image if video fails -->
+        <img src="https://cdn.prod.website-files.com/64354a08ff4dd15c2539372b/66f53025d736ec8f772d3e4c_poster.webp" alt="Video poster" style="width: 100%; height: 100%; object-fit: cover;" />
+        
+        <!-- Text fallback -->
+        <p>Your browser does not support the video tag. <a href="./images/new-play.mp4">Download the video</a></p>
+      </video>
+      
+      <!-- Loading indicator -->
+      <div id="video-loading" style="
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: none;
+        color: white;
+        background: rgba(0,0,0,0.7);
+        padding: 10px;
+        border-radius: 5px;
+      ">
+        Loading video...
+      </div>
+    </div>
+  </div>
+</div>
               </div>
             </div>
           </section>
